@@ -205,7 +205,7 @@ export default function TransactionClient({
         <div className="rounded-2xl bg-white dark:bg-slate-900 p-6 shadow-lg shadow-slate-200/50 dark:shadow-slate-950/50 border border-slate-100 dark:border-slate-800">
           <p className="text-sm font-semibold text-slate-900 dark:text-white mb-4">Expense Breakdown</p>
           {chartData.length === 0 ? (
-            <p className="text-xs text-slate-400 text-center py-10">No expenses yet — you're doing great.</p>
+            <p className="text-xs text-slate-400 text-center py-10">No expenses yet — you are doing great.</p>
           ) : (
             <div className="flex justify-center">
               <ResponsiveContainer width="100%" height={180}>
@@ -291,6 +291,7 @@ export default function TransactionClient({
               className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               value={type}
               onChange={(e) => setType(e.target.value as "income" | "expense")}
+              title="Transaction type"
             >
               <option value="expense">Expense</option>
               <option value="income">Income</option>
@@ -300,6 +301,7 @@ export default function TransactionClient({
               className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
+              title="Transaction category"
             >
               <option>Food</option>
               <option>Transport</option>
