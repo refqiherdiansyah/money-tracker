@@ -3,34 +3,6 @@ import TransactionClient from "./components/TransactionClient";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-// Mock initial transactions for demo
-const initialTransactions = [
-  {
-    id: 1,
-    title: "Groceries",
-    amount: 150000,
-    type: "expense" as const,
-    category: "Food",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    title: "Salary",
-    amount: 5000000,
-    type: "income" as const,
-    category: "Other",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    title: "Coffee",
-    amount: 45000,
-    type: "expense" as const,
-    category: "Food",
-    createdAt: new Date().toISOString(),
-  },
-]
-
 function serializeTransaction(t: any) {
   return {
     ...t,
@@ -39,7 +11,14 @@ function serializeTransaction(t: any) {
 }
 
 export default async function Page() {
-  const session = await getServerSession(authOptions);
+  let session = null;
+
+  try {
+    session = await getServerSession(authOptions);
+  } catch (error) {
+    console.error("❌ getServerSession failed:", error);
+    session = null;
+  }
 
   if (!session?.user?.email) {
     return <TransactionClient initialTransactions={[]} />;

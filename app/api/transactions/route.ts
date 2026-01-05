@@ -12,6 +12,8 @@ function serializeTransaction(t: any) {
 }
 
 /* ================= GET ================= */
+
+
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
